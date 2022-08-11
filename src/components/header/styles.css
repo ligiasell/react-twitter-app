@@ -1,0 +1,23 @@
+.header {
+  display: grid;
+  grid-template-columns: min-content auto 5rem 6rem;
+  align-items: center;
+  padding: 0 4rem;
+  border-bottom: 0.1rem solid lightgray;
+}
+
+.header-logo {
+  max-width: 3rem;
+  margin-right: 0.6rem;
+}
+
+.header-title {
+  color: #00a0fa;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.header-switch-button {
+  border: 1px solid red;
+  background-color: green;
+}

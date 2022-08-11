@@ -1,0 +1,38 @@
+.card {
+  display: grid;
+  grid-template-areas:
+  'card-image card-username'
+  'card-text card-text'
+  'card-buttons card-buttons';
+  grid-template-columns: min-content auto;
+  box-sizing: border-box;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.1rem 0.2rem lightgray;
+  border: solid 0.1rem lightgray;
+  background-color: white;
+  padding: 1rem;
+  margin: 0.8rem 0;
+}
+
+.card-image {
+  grid-area: card-image;
+  width: 3rem;
+  border-radius: 50%;
+  border: solid 0.05rem lightgray;
+
+}
+
+.card-username {
+  grid-area: card-username;
+  margin: auto 0;
+  color: gray;
+}
+
+.card-text {
+  grid-area: card-text;
+}
+
+.card-buttons {
+  grid-area: card-buttons;
+  display: flex;
+}
