@@ -1,9 +1,9 @@
 .card {
   display: grid;
   grid-template-areas:
-  'card-image card-username'
-  'card-text card-text'
-  'card-buttons card-buttons';
+    'card-profile-button card-profile-button'
+    'card-text card-text'
+    'card-buttons card-buttons';
   grid-template-columns: min-content auto;
   box-sizing: border-box;
   border-radius: 0.4rem;
@@ -14,18 +14,26 @@
   margin: 0.8rem 0;
 }
 
+.card-profile-button {
+  display: flex;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .card-image {
-  grid-area: card-image;
   width: 3rem;
   border-radius: 50%;
   border: solid 0.05rem lightgray;
-
 }
 
 .card-username {
-  grid-area: card-username;
-  margin: auto 0;
+  margin: auto 0 auto 1rem;
   color: gray;
+}
+
+.card-username:hover {
+  text-decoration: underline;
 }
 
 .card-text {

@@ -1,0 +1,20 @@
+.profile {
+  display: grid;
+  justify-items: center;
+  padding: 1rem;
+  background-color: white;
+  border: none;
+  cursor:pointer;
+}
+
+.profile-image {
+  width: 3rem;
+  border-radius: 50%;
+  border: solid 0.05rem lightgray;
+}
+
+.profile-username {
+  font-size: 1.2rem;
+  margin: auto;
+  color: gray;
+}
