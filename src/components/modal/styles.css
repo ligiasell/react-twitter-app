@@ -1,0 +1,31 @@
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: pink;
+  outline: none;
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+
+.modal-close-button {
+  display: flex;
+  align-self: flex-start;
+  justify-content: flex-end;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(48, 50, 56, 0.8);
+  -webkit-backdrop-filter: blur(0.5rem);
+}
+
+.no-scroll {
+  overflow: hidden;
+}
