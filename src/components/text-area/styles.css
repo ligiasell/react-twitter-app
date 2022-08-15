@@ -1,1 +1,21 @@
+.text-area-wrapper {
+  margin-top: 2rem;
+}
 
+
+.text-area-title {
+  color: #00a0fa;
+}
+
+.text-area {
+  width: 100%;
+  min-height: 4rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.text-area-counter {
+  color: gray;
+  margin: 0 0 1rem;
+}

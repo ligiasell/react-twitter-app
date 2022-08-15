@@ -6,7 +6,7 @@ import Button from '../button'
 
 import './styles.css'
 
-const Modal = ({ isOpen, children, onClose }) => (
+const Modal = ({ isOpen, onClose, children }) => (
   <ReactModal
     className="modal"
     isOpen={isOpen}
@@ -25,13 +25,11 @@ const Modal = ({ isOpen, children, onClose }) => (
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  title: PropTypes.string,
-  children: PropTypes.node,
   onClose: PropTypes.func,
+  children: PropTypes.node,
 }
 
 Modal.defaultProps = {
-  title: '',
   onClose: () => {},
   children: null,
 }

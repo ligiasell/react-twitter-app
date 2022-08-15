@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../button'
 import { MAX_NUMBER_OF_CHARACTERS } from '../../utils/constants'
 
 import './styles.css'
@@ -14,16 +15,16 @@ const TextArea = ({ onClick }) => {
   }
 
   return (
-    <div className="text-area-wrapper">
+    <section className="text-area-wrapper">
       <label>
-        <h2>Create new Posterr</h2>
+        <h1 className="text-area-title">Create new Posterr</h1>
       </label>
-      <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={onCounterChange} />
-      <span>{counter} characters left</span>
-      <button type="button" onClick={onClick}>
-        Post
-      </button>
-    </div>
+      <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={onCounterChange} placeholder="Write your Posterr here..." />
+      <p className="text-area-counter">{counter} characters left</p>
+      <Button type="button" onClick={onClick}>
+        POST
+      </Button>
+    </section>
   )
 }
 

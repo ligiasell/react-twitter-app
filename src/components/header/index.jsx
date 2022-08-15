@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 // import { useNavigate } from 'react-router-dom'
 
 import SwitchButton from '../button/switch-button'
@@ -8,7 +9,7 @@ import logoColor from '../../assets/logo-color.png'
 
 import './styles.css'
 
-const Header = () => {
+const Header = ({ user }) => {
   // const navigate = useNavigate()
   const [isChecked, setIsChecked] = useState(false)
 
@@ -31,9 +32,17 @@ const Header = () => {
       <img src={logoColor} alt="Posterr logo" className="header-logo" />
       <h1 className="header-title">Posterr</h1>
       <SwitchButton checked={isChecked} onChange={onSwitchButtonChange} name="switch-button" label={isChecked ? POSTS_VIEW_TYPE.FOLLOWING : POSTS_VIEW_TYPE.ALL} />
-      <Profile onClick={handleClick} image="https://robohash.org/$15?set=set2&size=180x180" imageName="Mary Johnson" userName="Mary" />
+      <Profile onClick={handleClick} user={user} />
     </div>
   )
+}
+
+Header.propTypes = {
+  user: PropTypes.shape({}),
+}
+
+Header.defaultProps = {
+  user: {},
 }
 
 export default Header

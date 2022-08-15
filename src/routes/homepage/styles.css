@@ -1,6 +1,12 @@
-.homepage{
+.homepage {
+  height: 100%;
 }
 
-.homepage-body {
+.homepage-cards {
   margin: 0 20%;
+}
+
+.homepage-text-area {
+  padding: 0 4rem;
+  margin-bottom: 4rem;
 }

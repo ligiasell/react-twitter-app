@@ -3,7 +3,9 @@
   grid-template-areas:
     'card-profile-button card-profile-button'
     'card-text card-text'
-    'card-buttons card-buttons';
+    'card-buttons card-buttons'
+    'card-quote card-quote'
+  ;
   grid-template-columns: min-content auto;
   box-sizing: border-box;
   border-radius: 0.4rem;
@@ -43,4 +45,10 @@
 .card-buttons {
   grid-area: card-buttons;
   display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.card-quote {
+  grid-area: card-quote;
 }

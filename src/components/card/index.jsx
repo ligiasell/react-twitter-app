@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../button/index'
-import Modal from '../../components/modal'
+import Button from '../button'
+import UserModal from '../modal/user-modal'
+import TextArea from '../text-area'
 
 import './styles.css'
 
-const Card = ({ image, imageName, userName, text }) => {
+const Card = ({ image, imageName, userName, text, user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
   const handleIsModalOpen = () => {
-    console.log('click')
     setIsModalOpen((prevState) => !prevState)
+  }
+
+  const handleQuote = () => {
+    setIsQuoteOpen((prevState) => !prevState)
   }
 
   return (
@@ -23,11 +28,14 @@ const Card = ({ image, imageName, userName, text }) => {
       <p className="card-text">{text}</p>
       <div className="card-buttons">
         <Button>Repost</Button>
-        <Button>Quote</Button>
+        <Button onClick={handleQuote}>Quote</Button>
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleIsModalOpen}>
-        Lalallalal
-      </Modal>
+      {isQuoteOpen && (
+        <div className="card-quote">
+          <TextArea />
+        </div>
+      )}
+      <UserModal isOpen={isModalOpen} onClose={handleIsModalOpen} user={user} />
     </section>
   )
 }
@@ -37,6 +45,7 @@ Card.propTypes = {
   imageName: PropTypes.string,
   userName: PropTypes.string,
   text: PropTypes.string,
+  user: PropTypes.shape({}),
 }
 
 Card.defaultProps = {
@@ -44,6 +53,7 @@ Card.defaultProps = {
   imageName: '',
   userName: '',
   text: '',
+  user: {},
 }
 
 export default Card

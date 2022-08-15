@@ -3,27 +3,23 @@ import PropTypes from 'prop-types'
 
 import './styles.css'
 
-const Profile = ({ onClick, image, imageName, userName }) => {
+const Profile = ({ onClick, user }) => {
   return (
     <button className="profile" onClick={onClick}>
-      <img src={image} alt={imageName} className="profile-image" />
-      <h1 className="profile-username">{userName}</h1>
+      <img src={user.url} alt={user.name} className="profile-image" />
+      <h1 className="profile-username">{user.username}</h1>
     </button>
   )
 }
 
 Profile.propTypes = {
   onClick: PropTypes.func,
-  image: PropTypes.string,
-  imageName: PropTypes.string,
-  userName: PropTypes.string,
+  user: PropTypes.shape({}),
 }
 
 Profile.defaultProps = {
   onClick: () => {},
-  image: '',
-  imageName: '',
-  userName: '',
+  user: {},
 }
 
 export default Profile
