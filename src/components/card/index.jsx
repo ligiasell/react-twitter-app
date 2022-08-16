@@ -1,31 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../button'
-import UserModal from '../modal/user-modal'
+// import UserModal from '../modal/user-modal'
 import TextArea from '../text-area'
+import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Card = ({ image, imageName, userName, text, user }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+const Card = ({ post, onClick }) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false)
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
-  const handleIsModalOpen = () => {
-    setIsModalOpen((prevState) => !prevState)
-  }
+  // const handleIsModalOpen = () => {
+  //   setIsModalOpen((prevState) => !prevState)
+  // }
 
   const handleQuote = () => {
     setIsQuoteOpen((prevState) => !prevState)
   }
 
+  // useEffect(() => {
+  //   console.log('useEffect')
+  // }, [])
+
   return (
     <section className="card">
-      <button className="card-profile-button" onClick={handleIsModalOpen}>
-        <img src={image} alt={imageName} className="card-image" />
-        <h1 className="card-username">{userName}</h1>
+      <button
+        onClick={onClick}
+        // onClick={handleIsModalOpen}
+        className="card-profile-button"
+      >
+        {USERS.map(
+          (user) =>
+            user.id === post.userId && (
+              <div key={user.id} className="card-user">
+                <img src={user.url} alt={user.name} className="card-image" />
+                <h1 className="card-username">{user.username}</h1>
+                {/* <UserModal isOpen={isModalOpen} onClose={handleIsModalOpen} userId={user.id} /> */}
+              </div>
+            )
+        )}
       </button>
-      <p className="card-text">{text}</p>
+      <div className="card-text">
+        {post.type === 'regular' && <p>{post.postMessage}</p>}
+        {post.type === 'quote' && (
+          <div>
+            <p>{post.quoteMessage}</p>
+            <p className="card-text-small">"{post.postMessage}"</p>
+            <p className="card-text-small">Quoted</p>
+          </div>
+        )}
+        {post.type === 'repost' && (
+          <div>
+            <p>"{post.postMessage}"</p>
+            <p className="card-text-small">Reposted</p>
+          </div>
+        )}
+      </div>
       <div className="card-buttons">
         <Button>Repost</Button>
         <Button onClick={handleQuote}>Quote</Button>
@@ -35,25 +67,18 @@ const Card = ({ image, imageName, userName, text, user }) => {
           <TextArea />
         </div>
       )}
-      <UserModal isOpen={isModalOpen} onClose={handleIsModalOpen} user={user} />
     </section>
   )
 }
 
 Card.propTypes = {
-  image: PropTypes.string,
-  imageName: PropTypes.string,
-  userName: PropTypes.string,
-  text: PropTypes.string,
-  user: PropTypes.shape({}),
+  post: PropTypes.shape({}),
+  onClick: PropTypes.func,
 }
 
 Card.defaultProps = {
-  image: '',
-  imageName: '',
-  userName: '',
-  text: '',
-  user: {},
+  post: {},
+  onClick: () => {},
 }
 
 export default Card

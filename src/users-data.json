@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "url": "https://robohash.org/$1?set=set2&size=180x180",
+    "membershipDate": "March 25, 2021",
+    "followers": [2, 3],
+    "following": [2, 3]
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "email": "Shanna@melissa.tv",
+    "url": "https://robohash.org/$2?set=set2&size=180x180",
+    "membershipDate": "January 02, 2020",
+    "followers": [1, 3],
+    "following": [1, 3]
+  },
+  {
+    "id": 3,
+    "name": "Clementine Bauch",
+    "username": "Samantha",
+    "email": "Nathan@yesenia.net",
+    "url": "https://robohash.org/$3?set=set2&size=180x180",
+    "membershipDate": "December 10, 2019",
+    "followers": [4, 5],
+    "following": [1, 2, 4, 5]
+  },
+  {
+    "id": 4,
+    "name": "Patricia Lebsack",
+    "username": "Karianne",
+    "email": "Julianne.OConner@kory.org",
+    "url": "https://robohash.org/$4?set=set2&size=180x180",
+    "membershipDate": "October 12, 2021",
+   " followers": [3],
+   " following": [3, 5]
+  },
+  {
+    "id": 5,
+    "name": "Chelsey Dietrich",
+    "username": "Kamren",
+    "email": "Lucio_Hettinger@annie.ca",
+    "url": "https://robohash.org/$5?set=set2&size=180x180",
+    "membershipDate": "June 30, 2022",
+    "followers": [1, 2, 3, 4],
+    "following": [1, 2, 3, 4]
+  }
+]

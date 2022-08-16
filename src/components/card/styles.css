@@ -1,7 +1,7 @@
 .card {
   display: grid;
   grid-template-areas:
-    'card-profile-button card-profile-button'
+    'card-user card-user'
     'card-text card-text'
     'card-buttons card-buttons'
     'card-quote card-quote'
@@ -17,9 +17,12 @@
 }
 
 .card-profile-button {
-  display: flex;
   background-color: white;
   border: none;
+}
+
+.card-user {
+  display: flex;
   cursor: pointer;
 }
 
@@ -51,4 +54,9 @@
 
 .card-quote {
   grid-area: card-quote;
+}
+
+.card-text-small {
+  color: gray;
+  font-size: 0.9rem;
 }

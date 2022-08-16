@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "type": "regular",
+    "postMessage": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+    "quoteMessage": "",
+    "originalPostId": 1
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "type": "regular",
+    "postMessage": "harum non quasi et ratione\ntempore iure ex voluptates in ratione\nharum architecto fugit inventore cupiditate\nvoluptates magni quo et",
+    "quoteMessage": "",
+    "originalPostId": 2
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "type": "regular",
+    "postMessage": "quia mole stiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione",
+    "quoteMessage": " ",
+    "originalPostId": 3
+  },
+  {
+    "id": 4,
+    "userId": 3,
+    "type": "quote",
+    "postMessage": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+    "quoteMessage": "id labore ex et quam laborum",
+    "originalPostId": 1
+  },
+  {
+    "id": 5,
+    "userId": 4,
+    "type": "quote",
+    "postMessage": "harum non quasi et ratione\ntempore iure ex voluptates in ratione\nharum architecto fugit inventore cupiditate\nvoluptates magni quo et",
+    "quoteMessage": "quo vero reiciendis velit similique earum",
+    "originalPostId": 2
+  },
+  {
+    "id": 6,
+    "userId": 4,
+    "type": "quote",
+    "postMessage": "quia mole stiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione",
+    "quoteMessage": "odio adipisci rerum aut animi",
+    "originalPostId": 3
+  },
+  {
+    "id": 7,
+    "userId": 4,
+    "type": "repost",
+    "postMessage": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+    "quoteMessage": "",
+    "originalPostId": 1
+  },
+  {
+    "id": 8,
+    "userId": 5,
+    "type": "repost",
+    "postMessage": "harum non quasi et ratione\ntempore iure ex voluptates in ratione\nharum architecto fugit inventore cupiditate\nvoluptates magni quo et",
+    "quoteMessage": "",
+    "originalPostId": 2
+  },
+  {
+    "id": 9,
+    "userId": 1,
+    "type": "repost",
+    "postMessage": "quia mole stiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione",
+    "quoteMessage": " ",
+    "originalPostId": 3
+  }
+]
