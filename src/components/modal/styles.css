@@ -1,32 +1,70 @@
-.modal {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  outline: none;
-  border-radius: 0.4rem;
-  padding: 1rem 2rem;
-  margin-right: 45rem;
+.user-modal__close-button {
+  position: absolute;
+  right: 2rem;
 }
 
-.modal-close-button {
+.user-modal__header {
+  display: grid;
+  grid-template-areas:
+    '. . user-modal__close-button'
+    'user-modal__image user-modal__username user-modal__username'
+    'user-modal__image user-modal__membership-date user-modal__membership-date'
+    'user-modal__image user-modal__followers user-modal__following'
+    'user-modal__posts-number . .'
+    'user-modal__posts user-modal__posts user-modal__posts'
+    'user-modal__status user-modal__status user-modal__status';
+}
+
+.user-modal__image {
+  grid-area: user-modal__image;
+  width: 6rem;
+  margin: auto;
+  border-radius: 50%;
+  border: solid 0.05rem lightgray;
+}
+
+.user-modal__username {
+  grid-area: user-modal__username;
+  margin: 0;
+  color: gray;
+}
+
+.user-modal__membership-date {
+  grid-area: user-modal__membership-date;
+  color: gray;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.user-modal__followers {
+  grid-area: user-modal__followers;
+}
+
+.user-modal__following {
+  grid-area: user-modal__following;
+}
+
+.user-modal__posts-number {
+  grid-area: user-modal__posts-number;
+  color: gray;
+  font-weight: bold;
+}
+
+.user-modal__posts {
+  grid-area: user-modal__posts;
+  height: 10rem;
+  background-color: #F2F4F8;
+  overflow: scroll;
+  padding: 0.2rem 1rem;
+  margin: 1rem 0;
+}
+
+.user-modal__status {
+  grid-area: user-modal__status;
   display: flex;
-  align-self: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-.overlay {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(48, 50, 56, 0.8);
-  -webkit-backdrop-filter: blur(0.5rem);
-}
-
-.no-scroll {
-  overflow: hidden;
+.user-modal__following-status {
+  margin-right: 1rem;
 }

@@ -1,4 +1,4 @@
-.header {
+/* .layout {
   display: grid;
   grid-template-columns: min-content auto 5rem 6rem;
   align-items: center;
@@ -6,18 +6,23 @@
   border-bottom: 0.1rem solid lightgray;
 }
 
-.header-logo {
+.layout-logo {
   max-width: 3rem;
   margin-right: 0.6rem;
 }
 
-.header-title {
+.layout-title {
   color: #00a0fa;
   font-size: 3rem;
   margin: 0;
 }
 
-.header-switch-button {
+.layout-switch-button {
   border: 1px solid red;
   background-color: green;
 }
+
+.layout-text-area {
+  padding: 0 4rem;
+  margin-bottom: 4rem;
+} */
