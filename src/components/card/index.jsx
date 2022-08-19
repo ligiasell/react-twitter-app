@@ -8,7 +8,7 @@ import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Card = ({ post }) => {
+const Card = ({ post, onPostClick }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
@@ -51,7 +51,7 @@ const Card = ({ post }) => {
       </div>
       {isQuoteOpen && (
         <div className="card-quote">
-          <TextArea />
+          <TextArea onPostClick={onPostClick} />
         </div>
       )}
     </section>
@@ -60,10 +60,12 @@ const Card = ({ post }) => {
 
 Card.propTypes = {
   post: PropTypes.shape({}),
+  onPostClick: PropTypes.func,
 }
 
 Card.defaultProps = {
   post: {},
+  onPostClick: () => {},
 }
 
 export default Card

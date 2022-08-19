@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import './styles.css'
 
-const Button = ({ onClick, children }) => {
+const Button = ({ onClick, children, ...otherProps }) => {
   return (
-    <button type="button" onClick={onClick} className="button">
+    <button type="button" onClick={onClick} className="button" {...otherProps}>
       <span>{children}</span>
     </button>
   )

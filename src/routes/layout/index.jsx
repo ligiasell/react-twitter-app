@@ -11,7 +11,7 @@ import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Layout = () => {
+const Layout = ({ onPostClick }) => {
   const [loggedUser] = useState(USERS[0])
   const [isChecked, setIsChecked] = useState(false)
 
@@ -44,7 +44,7 @@ const Layout = () => {
       <hr />
       <Outlet />
       <div className="layout-text-area">
-        <TextArea />
+        <TextArea onPostClick={onPostClick} />
       </div>
     </div>
   )
@@ -52,10 +52,12 @@ const Layout = () => {
 
 Layout.propTypes = {
   user: PropTypes.shape({}),
+  onPostClick: PropTypes.func,
 }
 
 Layout.defaultProps = {
   user: {},
+  onPostClick: () => {},
 }
 
 export default Layout

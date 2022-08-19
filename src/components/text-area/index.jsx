@@ -1,39 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../button'
+import POSTS from '../../posts-data.json'
 import { MAX_NUMBER_OF_CHARACTERS } from '../../utils/constants'
+import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const TextArea = ({ onClick }) => {
-  const [counter, setCounter] = useState(0)
+const TextArea = ({ onPostClick }) => {
+  const [charactersCounter, setCharactersCounter] = useState(MAX_NUMBER_OF_CHARACTERS)
+  const [postsCounter, setPostsCounter] = useState(undefined)
+  const [text, setText] = useState('')
 
-  const onCounterChange = (event) => {
+  const handleTextChange = (event) => {
     const currentNumberOfCharacters = event.target.value.length
-    setCounter(MAX_NUMBER_OF_CHARACTERS - currentNumberOfCharacters)
+    setCharactersCounter(MAX_NUMBER_OF_CHARACTERS - currentNumberOfCharacters)
+    setText(event.target.value)
   }
+
+  // const handleCreatePost = () => {
+  // {
+  //   id: length,
+  //   userId: LOGGED_USER_ID,
+  //   type: "regular",
+  //   postMessage: text,
+  //   quoteMessage: "",
+  //   originalPostId: length,
+  // }
+  // }
+
+  useEffect(() => {
+    setPostsCounter(POSTS.filter((post) => post.userId === LOGGED_USER_ID).length)
+  }, [])
 
   return (
     <section className="text-area-wrapper">
       <label>
         <h1 className="text-area-title">Create new Posterr</h1>
       </label>
-      <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={onCounterChange} placeholder="Write your Posterr here..." />
-      <p className="text-area-counter">{counter} characters left</p>
-      <Button type="button" onClick={onClick}>
-        POST
-      </Button>
+      {postsCounter >= 5 ? (
+        <p>You already have 5 posts, write a new one tomorrow!</p>
+      ) : (
+        <>
+          <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={handleTextChange} placeholder="Write your Posterr here..." />
+          <p className="text-area-counter">{charactersCounter} characters left</p>
+          <Button type="button" disabled={text.length === 0} onClick={onPostClick}>
+            POST
+          </Button>
+        </>
+      )}
     </section>
   )
 }
 
 TextArea.propTypes = {
-  onClick: PropTypes.func,
+  onPostClick: PropTypes.func,
 }
 
 TextArea.defaultProps = {
-  onClick: () => {},
+  onPostClick: () => {},
 }
 
 export default TextArea

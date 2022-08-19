@@ -54,7 +54,7 @@
   grid-area: user-modal__posts;
   height: 10rem;
   background-color: #F2F4F8;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 0.2rem 1rem;
   margin: 1rem 0;
 }

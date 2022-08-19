@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Button from '../button'
 import TextArea from '../text-area'
-// import POSTS from '../../posts-data.json'
+import POSTS from '../../posts-data.json'
 import USERS from '../../users-data.json'
 import { LOGGED_USER_ID, MODAL_OVERLAY_STYLE, MODAL_BACKGROUND_STYLE } from '../../utils/constants'
 
 import './styles.css'
 
-const Modal = () => {
+const Modal = ({ onPostClick }) => {
   let navigate = useNavigate()
   let userId = parseInt(useParams().id)
   const [isFollowing, setIsFollowing] = useState(undefined)
   const [selectedUser, setSelectedUser] = useState({})
-  console.log('selectedUser', selectedUser)
 
   const handleCloseModal = (event) => {
     event.stopPropagation()
@@ -67,15 +67,7 @@ const Modal = () => {
           <p className="user-modal__membership-date">Joined Posterr at {selectedUser.membershipDate}</p>
           {selectedUser.followers && <p className="user-modal__followers">{selectedUser.followers.length} followers</p>}
           {selectedUser.following && <p className="user-modal__following">{selectedUser.following.length} following</p>}
-          {/* <div className="user-modal__posts">
-            {POSTS.map((post) => {
-              console.log('## userId inside POSTS', userId)
-              console.log('## post.userId inside POSTS', post.userId)
-              if (post.userId === userId) {
-                return <p key={post.id}>{post.postMessage}</p>
-              }
-            })}
-          </div> */}
+          <div className="user-modal__posts">{POSTS.map((post) => post.userId === userId && <p key={post.id}>{post.postMessage}</p>)}</div>
         </div>
         {LOGGED_USER_ID !== selectedUser.id && (
           <div className="user-modal__status">
@@ -85,10 +77,18 @@ const Modal = () => {
             <Button onClick={handleIsFollowing}>{`${isFollowing ? 'UNFOLLOW' : 'FOLLOW'}`}</Button>
           </div>
         )}
-        <TextArea onClick={handlePost} />
+        <TextArea onPostClick={onPostClick} />
       </div>
     </div>
   )
+}
+
+Modal.propTypes = {
+  onPostClick: PropTypes.func,
+}
+
+Modal.defaultProps = {
+  onPostClick: () => {},
 }
 
 export default Modal
