@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "Leanne Graham",
     "username": "Bret",
     "email": "Sincere@april.biz",
@@ -10,7 +10,7 @@
     "following": [2, 3]
   },
   {
-    "id": 2,
+    "id": 1,
     "name": "Ervin Howell",
     "username": "Antonette",
     "email": "Shanna@melissa.tv",
@@ -20,7 +20,7 @@
     "following": [1, 3]
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Clementine Bauch",
     "username": "Samantha",
     "email": "Nathan@yesenia.net",
@@ -30,7 +30,7 @@
     "following": [1, 2, 4, 5]
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "Patricia Lebsack",
     "username": "Karianne",
     "email": "Julianne.OConner@kory.org",
@@ -40,7 +40,7 @@
    " following": [3, 5]
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "Chelsey Dietrich",
     "username": "Kamren",
     "email": "Lucio_Hettinger@annie.ca",

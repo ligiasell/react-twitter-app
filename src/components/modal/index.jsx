@@ -39,10 +39,6 @@ const Modal = ({ onPostClick }) => {
     }
   }
 
-  const handlePost = () => {
-    // TODO: Add post and close modal
-  }
-
   useEffect(() => {
     setSelectedUser(USERS.find((user) => user.id === userId))
   }, [userId])

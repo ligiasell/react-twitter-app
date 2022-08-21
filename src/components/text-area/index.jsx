@@ -8,7 +8,7 @@ import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const TextArea = ({ onPostClick }) => {
+const TextArea = ({ onPostClick, onChange, wasPosted }) => {
   const [charactersCounter, setCharactersCounter] = useState(MAX_NUMBER_OF_CHARACTERS)
   const [postsCounter, setPostsCounter] = useState(undefined)
   const [text, setText] = useState('')
@@ -16,23 +16,19 @@ const TextArea = ({ onPostClick }) => {
   const handleTextChange = (event) => {
     const currentNumberOfCharacters = event.target.value.length
     setCharactersCounter(MAX_NUMBER_OF_CHARACTERS - currentNumberOfCharacters)
-    setText(event.target.value)
+    setText(event.currentTarget.value)
+    onChange(event.currentTarget.value)
   }
-
-  // const handleCreatePost = () => {
-  // {
-  //   id: length,
-  //   userId: LOGGED_USER_ID,
-  //   type: "regular",
-  //   postMessage: text,
-  //   quoteMessage: "",
-  //   originalPostId: length,
-  // }
-  // }
 
   useEffect(() => {
     setPostsCounter(POSTS.filter((post) => post.userId === LOGGED_USER_ID).length)
   }, [])
+
+  useEffect(() => {
+    if (wasPosted) {
+      setText('')
+    }
+  }, [wasPosted])
 
   return (
     <section className="text-area-wrapper">
@@ -43,7 +39,7 @@ const TextArea = ({ onPostClick }) => {
         <p>You already have 5 posts, write a new one tomorrow!</p>
       ) : (
         <>
-          <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={handleTextChange} placeholder="Write your Posterr here..." />
+          <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={handleTextChange} placeholder="Write your Posterr here..." value={text} />
           <p className="text-area-counter">{charactersCounter} characters left</p>
           <Button type="button" disabled={text.length === 0} onClick={onPostClick}>
             POST
@@ -56,10 +52,14 @@ const TextArea = ({ onPostClick }) => {
 
 TextArea.propTypes = {
   onPostClick: PropTypes.func,
+  onChange: PropTypes.func,
+  wasPosted: PropTypes.bool,
 }
 
 TextArea.defaultProps = {
   onPostClick: () => {},
+  onChange: () => {},
+  wasPosted: false,
 }
 
 export default TextArea

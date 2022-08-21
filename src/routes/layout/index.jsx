@@ -6,12 +6,11 @@ import SwitchButton from '../../components/button/switch-button'
 import Profile from '../../components/profile/index'
 import { POSTS_VIEW_TYPE } from '../../utils/constants'
 import logoColor from '../../assets/logo-color.png'
-import TextArea from '../../components/text-area'
 import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Layout = ({ onPostClick }) => {
+const Layout = () => {
   const [loggedUser] = useState(USERS[0])
   const [isChecked, setIsChecked] = useState(false)
 
@@ -43,21 +42,16 @@ const Layout = ({ onPostClick }) => {
       </nav>
       <hr />
       <Outlet />
-      <div className="layout-text-area">
-        <TextArea onPostClick={onPostClick} />
-      </div>
     </div>
   )
 }
 
 Layout.propTypes = {
   user: PropTypes.shape({}),
-  onPostClick: PropTypes.func,
 }
 
 Layout.defaultProps = {
   user: {},
-  onPostClick: () => {},
 }
 
 export default Layout

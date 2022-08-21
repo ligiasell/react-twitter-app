@@ -8,12 +8,13 @@ import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Card = ({ post, onPostClick }) => {
+const Card = ({ post, onPostClick, onChange, wasPosted, onPostId }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
   const handleQuote = () => {
     setIsQuoteOpen((prevState) => !prevState)
+    onPostId(post.id)
   }
 
   return (
@@ -34,13 +35,13 @@ const Card = ({ post, onPostClick }) => {
         {post.type === 'quote' && (
           <div>
             <p>{post.quoteMessage}</p>
-            <p className="card-text-small">"{post.postMessage}"</p>
+            <p className="card-text-small">&#10077;{post.postMessage}&#10078;</p>
             <p className="card-text-small">Quoted</p>
           </div>
         )}
         {post.type === 'repost' && (
           <div>
-            <p>"{post.postMessage}"</p>
+            <p>&#10077;{post.postMessage}&#10078;</p>
             <p className="card-text-small">Reposted</p>
           </div>
         )}
@@ -51,7 +52,7 @@ const Card = ({ post, onPostClick }) => {
       </div>
       {isQuoteOpen && (
         <div className="card-quote">
-          <TextArea onPostClick={onPostClick} />
+          <TextArea onPostClick={onPostClick} onChange={onChange} wasPosted={wasPosted} />
         </div>
       )}
     </section>
@@ -61,11 +62,17 @@ const Card = ({ post, onPostClick }) => {
 Card.propTypes = {
   post: PropTypes.shape({}),
   onPostClick: PropTypes.func,
+  onChange: PropTypes.func,
+  wasPosted: PropTypes.bool,
+  onPostId: PropTypes.func,
 }
 
 Card.defaultProps = {
   post: {},
   onPostClick: () => {},
+  onChange: () => {},
+  wasPosted: false,
+  onPostId: () => {},
 }
 
 export default Card

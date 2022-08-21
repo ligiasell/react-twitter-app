@@ -5,7 +5,7 @@ export const POSTS_VIEW_TYPE = {
 
 export const MAX_NUMBER_OF_CHARACTERS = 777
 
-export const LOGGED_USER_ID = 1
+export const LOGGED_USER_ID = 0
 
 export const MODAL_OVERLAY_STYLE = {
   position: 'absolute',
