@@ -1,9 +1,8 @@
-/* .layout {
+.layout {
   display: grid;
   grid-template-columns: min-content auto 5rem 6rem;
   align-items: center;
   padding: 0 4rem;
-  border-bottom: 0.1rem solid lightgray;
 }
 
 .layout-logo {
@@ -16,13 +15,3 @@
   font-size: 3rem;
   margin: 0;
 }
-
-.layout-switch-button {
-  border: 1px solid red;
-  background-color: green;
-}
-
-.layout-text-area {
-  padding: 0 4rem;
-  margin-bottom: 4rem;
-} */

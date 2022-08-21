@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../button'
 import POSTS from '../../posts-data.json'
-import { MAX_NUMBER_OF_CHARACTERS } from '../../utils/constants'
+import { MAX_NUMBER_OF_CHARACTERS, MAX_NUMBER_OF_POSTS } from '../../utils/constants'
 import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
@@ -35,7 +35,7 @@ const TextArea = ({ onPostClick, onChange, wasPosted }) => {
       <label>
         <h1 className="text-area-title">Create new Posterr</h1>
       </label>
-      {postsCounter >= 5 ? (
+      {postsCounter >= MAX_NUMBER_OF_POSTS ? (
         <p>You already have 5 posts, write a new one tomorrow!</p>
       ) : (
         <>

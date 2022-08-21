@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Button from '../button'
 import TextArea from '../text-area'
@@ -15,6 +15,7 @@ const Modal = ({ onPostClick }) => {
   let userId = parseInt(useParams().id)
   const [isFollowing, setIsFollowing] = useState(undefined)
   const [selectedUser, setSelectedUser] = useState({})
+  const [postsCounter, setPostsCounter] = useState(0)
 
   const handleCloseModal = (event) => {
     event.stopPropagation()
@@ -49,6 +50,10 @@ const Modal = ({ onPostClick }) => {
     }
   }, [selectedUser.followers])
 
+  useEffect(() => {
+    setPostsCounter(POSTS.filter((post) => post.userId === userId).length)
+  }, [userId])
+
   return (
     <div style={MODAL_OVERLAY_STYLE}>
       <div style={MODAL_BACKGROUND_STYLE}>
@@ -63,6 +68,7 @@ const Modal = ({ onPostClick }) => {
           <p className="user-modal__membership-date">Joined Posterr at {selectedUser.membershipDate}</p>
           {selectedUser.followers && <p className="user-modal__followers">{selectedUser.followers.length} followers</p>}
           {selectedUser.following && <p className="user-modal__following">{selectedUser.following.length} following</p>}
+          <p className="user-modal__posts-number">{postsCounter} posts</p>
           <div className="user-modal__posts">{POSTS.map((post) => post.userId === userId && <p key={post.id}>{post.postMessage}</p>)}</div>
         </div>
         {LOGGED_USER_ID !== selectedUser.id && (

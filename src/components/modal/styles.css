@@ -56,7 +56,7 @@
   background-color: #F2F4F8;
   overflow-y: scroll;
   padding: 0.2rem 1rem;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 .user-modal__status {
