@@ -10,12 +10,11 @@ import { LOGGED_USER_ID, MODAL_OVERLAY_STYLE, MODAL_BACKGROUND_STYLE } from '../
 
 import './styles.css'
 
-const Modal = ({ onPostClick }) => {
+const Modal = ({ onPostClick, postsCounter }) => {
   let navigate = useNavigate()
   let userId = parseInt(useParams().id)
   const [isFollowing, setIsFollowing] = useState(undefined)
   const [selectedUser, setSelectedUser] = useState({})
-  const [postsCounter, setPostsCounter] = useState(0)
 
   const handleCloseModal = (event) => {
     event.stopPropagation()
@@ -50,10 +49,6 @@ const Modal = ({ onPostClick }) => {
     }
   }, [selectedUser.followers])
 
-  useEffect(() => {
-    setPostsCounter(POSTS.filter((post) => post.userId === userId).length)
-  }, [userId])
-
   return (
     <div style={MODAL_OVERLAY_STYLE}>
       <div style={MODAL_BACKGROUND_STYLE}>
@@ -87,10 +82,12 @@ const Modal = ({ onPostClick }) => {
 
 Modal.propTypes = {
   onPostClick: PropTypes.func,
+  postsCounter: PropTypes.number,
 }
 
 Modal.defaultProps = {
   onPostClick: () => {},
+  postsCounter: 0,
 }
 
 export default Modal

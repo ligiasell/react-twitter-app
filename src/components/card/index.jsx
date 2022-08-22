@@ -5,10 +5,11 @@ import PropTypes from 'prop-types'
 import Button from '../button'
 import TextArea from '../text-area'
 import USERS from '../../users-data.json'
+import { MAX_NUMBER_OF_POSTS } from '../../utils/constants'
 
 import './styles.css'
 
-const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPostId }) => {
+const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPostId, postsCounter }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
@@ -50,9 +51,16 @@ const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPos
         )}
       </div>
       <div className="card-buttons">
-        <Button onClick={onRepostClick}>Repost</Button>
-        <Button onClick={handleQuote}>Quote</Button>
+        {postsCounter >= MAX_NUMBER_OF_POSTS ? (
+          <p>You already have 5 posts, repost or quote a new one tomorrow!</p>
+        ) : (
+          <>
+            <Button onClick={onRepostClick}>Repost</Button>
+            <Button onClick={handleQuote}>Quote</Button>
+          </>
+        )}
       </div>
+
       {isQuoteOpen && (
         <div className="card-quote">
           <TextArea onPostClick={onPostClick} onTextChange={onTextChange} wasPosted={wasPosted} />
@@ -69,6 +77,7 @@ Card.propTypes = {
   onTextChange: PropTypes.func,
   wasPosted: PropTypes.bool,
   onPostId: PropTypes.func,
+  postsCounter: PropTypes.number,
 }
 
 Card.defaultProps = {
@@ -78,6 +87,7 @@ Card.defaultProps = {
   onTextChange: () => {},
   wasPosted: false,
   onPostId: () => {},
+  postsCounter: 0,
 }
 
 export default Card

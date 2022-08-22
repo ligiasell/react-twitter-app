@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 
 import Card from '../card'
@@ -9,7 +10,7 @@ import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const UsersContent = () => {
+const UsersContent = ({ onPostsCounter }) => {
   let path = useLocation().pathname
   const [posts, setPosts] = useState(POSTS)
   const [text, setText] = useState('')
@@ -17,6 +18,7 @@ const UsersContent = () => {
   const [postId, setPostId] = useState(undefined)
   const [originalPost, setOriginalPost] = useState({})
   const [following, setFollowing] = useState([])
+  const [postsCounter, setPostsCounter] = useState(undefined)
 
   const handleTextChange = (textArea) => {
     setText(textArea)
@@ -82,6 +84,11 @@ const UsersContent = () => {
     setFollowing(loggedUser.following)
   }, [])
 
+  useEffect(() => {
+    setPostsCounter(posts.filter((post) => post.userId === LOGGED_USER_ID).length)
+    onPostsCounter(posts.filter((post) => post.userId === LOGGED_USER_ID).length)
+  }, [posts, onPostsCounter])
+
   return (
     <div className="users-content">
       <div>
@@ -98,6 +105,7 @@ const UsersContent = () => {
                     onTextChange={handleTextChange}
                     wasPosted={wasPosted}
                     onPostId={onPostId}
+                    postsCounter={postsCounter}
                   />
                 </div>
               )
@@ -113,6 +121,7 @@ const UsersContent = () => {
                   onTextChange={handleTextChange}
                   wasPosted={wasPosted}
                   onPostId={onPostId}
+                  postsCounter={postsCounter}
                 />
               </div>
             )
@@ -120,10 +129,18 @@ const UsersContent = () => {
         })}
       </div>
       <div>
-        <TextArea onPostClick={handleCreatePost} onTextChange={handleTextChange} wasPosted={wasPosted} />
+        <TextArea onPostClick={handleCreatePost} onTextChange={handleTextChange} wasPosted={wasPosted} postsCounter={postsCounter} />
       </div>
     </div>
   )
+}
+
+UsersContent.propTypes = {
+  onPostsCounter: PropTypes.func,
+}
+
+UsersContent.defaultProps = {
+  onPostsCounter: () => {},
 }
 
 export default UsersContent

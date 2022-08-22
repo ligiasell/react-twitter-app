@@ -48,8 +48,8 @@
 .card-buttons {
   grid-area: card-buttons;
   display: flex;
-  justify-content: space-between;
-  width: 25%;
+  justify-content: flex-start;
+  column-gap: 20px;
 }
 
 .card-quote {

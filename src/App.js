@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Layout from '../src/routes/layout'
@@ -9,18 +10,23 @@ import UsersContent from '../src/components/users-content'
 const App = () => {
   let location = useLocation()
   let state = location.state
+  const [postsCounter, setPostsCounter] = useState(undefined)
+
+  const handlePostsCounter = (counter) => {
+    setPostsCounter(counter)
+  }
 
   return (
     <>
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/" element={<Layout />}>
-          <Route exact path="/" element={<AllUsers>{<UsersContent />}</AllUsers>} />
-          <Route path="/following" element={<FollowingUsers>{<UsersContent />}</FollowingUsers>} />
+          <Route exact path="/" element={<AllUsers>{<UsersContent onPostsCounter={handlePostsCounter} />}</AllUsers>} />
+          <Route path="/following" element={<FollowingUsers>{<UsersContent onPostsCounter={handlePostsCounter} />}</FollowingUsers>} />
         </Route>
       </Routes>
       {state?.backgroundLocation && (
         <Routes>
-          <Route path="/user/:id" element={<Modal />} />
+          <Route path="/user/:id" element={<Modal postsCounter={postsCounter} />} />
         </Routes>
       )}
     </>
