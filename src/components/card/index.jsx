@@ -8,7 +8,7 @@ import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Card = ({ post, onPostClick, onRepostClick, onChange, wasPosted, onPostId }) => {
+const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPostId }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
@@ -55,7 +55,7 @@ const Card = ({ post, onPostClick, onRepostClick, onChange, wasPosted, onPostId 
       </div>
       {isQuoteOpen && (
         <div className="card-quote">
-          <TextArea onPostClick={onPostClick} onChange={onChange} wasPosted={wasPosted} />
+          <TextArea onPostClick={onPostClick} onTextChange={onTextChange} wasPosted={wasPosted} />
         </div>
       )}
     </section>
@@ -66,7 +66,7 @@ Card.propTypes = {
   post: PropTypes.shape({}),
   onPostClick: PropTypes.func,
   onRepostClick: PropTypes.func,
-  onChange: PropTypes.func,
+  onTextChange: PropTypes.func,
   wasPosted: PropTypes.bool,
   onPostId: PropTypes.func,
 }
@@ -75,7 +75,7 @@ Card.defaultProps = {
   post: {},
   onPostClick: () => {},
   onRepostClick: () => {},
-  onChange: () => {},
+  onTextChange: () => {},
   wasPosted: false,
   onPostId: () => {},
 }

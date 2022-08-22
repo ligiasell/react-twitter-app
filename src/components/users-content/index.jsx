@@ -95,7 +95,7 @@ const UsersContent = () => {
                     post={post}
                     onPostClick={handleCreateQuote}
                     onRepostClick={handleRepost}
-                    onChange={handleTextChange}
+                    onTextChange={handleTextChange}
                     wasPosted={wasPosted}
                     onPostId={onPostId}
                   />
@@ -110,7 +110,7 @@ const UsersContent = () => {
                   post={post}
                   onPostClick={handleCreateQuote}
                   onRepostClick={handleRepost}
-                  onChange={handleTextChange}
+                  onTextChange={handleTextChange}
                   wasPosted={wasPosted}
                   onPostId={onPostId}
                 />
@@ -120,7 +120,7 @@ const UsersContent = () => {
         })}
       </div>
       <div>
-        <TextArea onPostClick={handleCreatePost} onChange={handleTextChange} wasPosted={wasPosted} />
+        <TextArea onPostClick={handleCreatePost} onTextChange={handleTextChange} wasPosted={wasPosted} />
       </div>
     </div>
   )

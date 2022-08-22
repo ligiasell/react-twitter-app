@@ -8,7 +8,7 @@ import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const TextArea = ({ onPostClick, onChange, wasPosted }) => {
+const TextArea = ({ onPostClick, onTextChange, wasPosted }) => {
   const [charactersCounter, setCharactersCounter] = useState(MAX_NUMBER_OF_CHARACTERS)
   const [postsCounter, setPostsCounter] = useState(undefined)
   const [text, setText] = useState('')
@@ -17,7 +17,7 @@ const TextArea = ({ onPostClick, onChange, wasPosted }) => {
     const currentNumberOfCharacters = event.target.value.length
     setCharactersCounter(MAX_NUMBER_OF_CHARACTERS - currentNumberOfCharacters)
     setText(event.currentTarget.value)
-    onChange(event.currentTarget.value)
+    onTextChange(event.currentTarget.value)
   }
 
   useEffect(() => {
@@ -52,13 +52,13 @@ const TextArea = ({ onPostClick, onChange, wasPosted }) => {
 
 TextArea.propTypes = {
   onPostClick: PropTypes.func,
-  onChange: PropTypes.func,
+  onTextChange: PropTypes.func,
   wasPosted: PropTypes.bool,
 }
 
 TextArea.defaultProps = {
   onPostClick: () => {},
-  onChange: () => {},
+  onTextChange: () => {},
   wasPosted: false,
 }
 
