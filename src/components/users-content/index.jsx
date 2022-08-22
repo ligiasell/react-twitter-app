@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 
 import Card from '../card'
@@ -10,7 +9,7 @@ import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const UsersContent = ({ onPostsCounter }) => {
+const UsersContent = () => {
   let path = useLocation().pathname
   const [posts, setPosts] = useState(POSTS)
   const [text, setText] = useState('')
@@ -86,8 +85,7 @@ const UsersContent = ({ onPostsCounter }) => {
 
   useEffect(() => {
     setPostsCounter(posts.filter((post) => post.userId === LOGGED_USER_ID).length)
-    onPostsCounter(posts.filter((post) => post.userId === LOGGED_USER_ID).length)
-  }, [posts, onPostsCounter])
+  }, [posts])
 
   return (
     <div className="users-content">
@@ -133,14 +131,6 @@ const UsersContent = ({ onPostsCounter }) => {
       </div>
     </div>
   )
-}
-
-UsersContent.propTypes = {
-  onPostsCounter: PropTypes.func,
-}
-
-UsersContent.defaultProps = {
-  onPostsCounter: () => {},
 }
 
 export default UsersContent

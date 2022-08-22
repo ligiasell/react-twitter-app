@@ -10,11 +10,12 @@ import { LOGGED_USER_ID, MODAL_OVERLAY_STYLE, MODAL_BACKGROUND_STYLE } from '../
 
 import './styles.css'
 
-const Modal = ({ onPostClick, postsCounter }) => {
+const Modal = ({ onPostClick }) => {
   let navigate = useNavigate()
   let userId = parseInt(useParams().id)
   const [isFollowing, setIsFollowing] = useState(undefined)
   const [selectedUser, setSelectedUser] = useState({})
+  const [loggedUserPostsCounter, setLoggedUserPostsCounter] = useState(0)
 
   const handleCloseModal = (event) => {
     event.stopPropagation()
@@ -49,6 +50,10 @@ const Modal = ({ onPostClick, postsCounter }) => {
     }
   }, [selectedUser.followers])
 
+  useEffect(() => {
+    setLoggedUserPostsCounter(POSTS.filter((post) => post.userId === userId).length)
+  }, [userId])
+
   return (
     <div style={MODAL_OVERLAY_STYLE}>
       <div style={MODAL_BACKGROUND_STYLE}>
@@ -63,7 +68,9 @@ const Modal = ({ onPostClick, postsCounter }) => {
           <p className="user-modal__membership-date">Joined Posterr at {selectedUser.membershipDate}</p>
           {selectedUser.followers && <p className="user-modal__followers">{selectedUser.followers.length} followers</p>}
           {selectedUser.following && <p className="user-modal__following">{selectedUser.following.length} following</p>}
-          <p className="user-modal__posts-number">{postsCounter} posts</p>
+          <p className="user-modal__posts-number">
+            {loggedUserPostsCounter} {`${loggedUserPostsCounter > 1 ? 'posts' : 'post'}`}
+          </p>
           <div className="user-modal__posts">{POSTS.map((post) => post.userId === userId && <p key={post.id}>{post.postMessage}</p>)}</div>
         </div>
         {LOGGED_USER_ID !== selectedUser.id && (
@@ -82,12 +89,10 @@ const Modal = ({ onPostClick, postsCounter }) => {
 
 Modal.propTypes = {
   onPostClick: PropTypes.func,
-  postsCounter: PropTypes.number,
 }
 
 Modal.defaultProps = {
   onPostClick: () => {},
-  postsCounter: 0,
 }
 
 export default Modal
