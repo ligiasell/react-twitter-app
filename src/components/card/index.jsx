@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
@@ -8,14 +8,17 @@ import USERS from '../../users-data.json'
 
 import './styles.css'
 
-const Card = ({ post, onPostClick, onChange, wasPosted, onPostId }) => {
+const Card = ({ post, onPostClick, onRepostClick, onChange, wasPosted, onPostId }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
   const handleQuote = () => {
     setIsQuoteOpen((prevState) => !prevState)
-    onPostId(post.id)
   }
+
+  useEffect(() => {
+    onPostId(post.id)
+  }, [onPostId, post.id])
 
   return (
     <section className="card">
@@ -47,7 +50,7 @@ const Card = ({ post, onPostClick, onChange, wasPosted, onPostId }) => {
         )}
       </div>
       <div className="card-buttons">
-        <Button>Repost</Button>
+        <Button onClick={onRepostClick}>Repost</Button>
         <Button onClick={handleQuote}>Quote</Button>
       </div>
       {isQuoteOpen && (
@@ -62,6 +65,7 @@ const Card = ({ post, onPostClick, onChange, wasPosted, onPostId }) => {
 Card.propTypes = {
   post: PropTypes.shape({}),
   onPostClick: PropTypes.func,
+  onRepostClick: PropTypes.func,
   onChange: PropTypes.func,
   wasPosted: PropTypes.bool,
   onPostId: PropTypes.func,
@@ -70,6 +74,7 @@ Card.propTypes = {
 Card.defaultProps = {
   post: {},
   onPostClick: () => {},
+  onRepostClick: () => {},
   onChange: () => {},
   wasPosted: false,
   onPostId: () => {},

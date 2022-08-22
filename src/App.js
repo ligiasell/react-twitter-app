@@ -4,7 +4,7 @@ import Layout from '../src/routes/layout'
 import AllUsers from '../src/routes/all-users'
 import FollowingUsers from '../src/routes/following-users'
 import Modal from '../src/components/modal'
-import UsersContent from '../src/routes/users-content'
+import UsersContent from '../src/components/users-content'
 
 const App = () => {
   let location = useLocation()
