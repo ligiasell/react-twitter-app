@@ -5,8 +5,8 @@ import './styles.css'
 
 const SwitchButton = ({ label, checked, onChange, id, name }) => (
   <div className="switch-button">
-    <input type="checkbox" id="label" className="switch-input" checked={checked} onChange={onChange} name={name} data-id={id} />
-    <label htmlFor="label" className="switch-button-label">
+    <input type="checkbox" id="label" className="switch-button__input" checked={checked} onChange={onChange} name={name} data-id={id} />
+    <label htmlFor="label" className="switch-button__label">
       {label}
     </label>
   </div>

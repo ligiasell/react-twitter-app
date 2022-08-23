@@ -4,12 +4,12 @@
   max-width: 5rem;
 }
 
-.switch-button-label {
+.switch-button__label {
   font-size: 1.2rem;
   color: gray;
 }
 
-.switch-input {
+.switch-button__input {
   position: relative;
   appearance: none;
   outline: none;
@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 
-.switch-input::after {
+.switch-button__input::after {
   position: absolute;
   top: 0.1rem;
   left: 0.1rem;
@@ -36,12 +36,12 @@
   box-shadow: 0.2rem 0.4rem 0.6rem rgba(0, 0, 0, 0.2);
 }
 
-.switch-input:checked {
+.switch-button__input:checked {
   border-color: #26f29a;
   box-shadow: inset 2.5rem 0 0 0 #26f29a;
 }
 
-.switch-input:checked::after {
+.switch-button__input:checked::after {
   left: 2rem;
   box-shadow: -0.2rem 0.4rem 0.3rem rgba(0, 0, 0, 0.05);
 }

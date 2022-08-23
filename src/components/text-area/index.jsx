@@ -24,17 +24,17 @@ const TextArea = ({ onPostClick, onTextChange, wasPosted, postsCounter }) => {
   }, [wasPosted])
 
   return (
-    <section className="text-area-wrapper">
+    <section className="text-area__wrapper">
       <label>
-        <h1 className="text-area-title">Create new Posterr</h1>
+        <h1 className="text-area__title">Create new Posterr</h1>
       </label>
       {postsCounter >= MAX_NUMBER_OF_POSTS ? (
         <p>You already have 5 posts, write a new one tomorrow!</p>
       ) : (
         <>
           <textarea className="text-area" maxLength={MAX_NUMBER_OF_CHARACTERS} onChange={handleTextChange} placeholder="Write your Posterr here..." value={text} />
-          <p className="text-area-counter">{charactersCounter} characters left</p>
-          <Button type="button" disabled={text.length === 0} onClick={onPostClick}>
+          <p className="text-area__counter">{charactersCounter} characters left</p>
+          <Button disabled={text.length === 0} onClick={onPostClick}>
             POST
           </Button>
         </>

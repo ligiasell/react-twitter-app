@@ -1,9 +1,9 @@
-.text-area-wrapper {
+.text-area__wrapper {
   margin-top: 2rem;
 }
 
 
-.text-area-title {
+.text-area__title {
   color: #00a0fa;
 }
 
@@ -16,7 +16,7 @@
   resize: none;
 }
 
-.text-area-counter {
+.text-area__counter {
   color: gray;
   margin: 0 0 1rem;
 }

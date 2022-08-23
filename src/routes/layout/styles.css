@@ -5,12 +5,12 @@
   padding: 0 4rem;
 }
 
-.layout-logo {
+.layout__logo {
   max-width: 3rem;
   margin-right: 0.6rem;
 }
 
-.layout-title {
+.layout__title {
   color: #00a0fa;
   font-size: 3rem;
   margin: 0;

@@ -23,34 +23,34 @@ const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, posts
 
   return (
     <section className="card">
-      <div className="card-profile-button">
+      <div className="card__profile">
         {USERS.map(
           (user) =>
             user.id === post.userId && (
-              <Link key={user.id} to={`/user/${user.id}`} state={{ backgroundLocation: location }} className="card-user">
-                <img src={user.url} alt={user.name} className="card-image" />
-                <h1 className="card-username">{user.username}</h1>
+              <Link key={user.id} to={`/user/${user.id}`} state={{ backgroundLocation: location }} className="card__user">
+                <img src={user.url} alt={user.name} className="card__image" />
+                <h1 className="card__username">{user.username}</h1>
               </Link>
             )
         )}
       </div>
-      <div className="card-text">
+      <div className="card__text">
         {post.type === 'regular' && <p>{post.postMessage}</p>}
         {post.type === 'quote' && (
           <div>
             <p>{post.quoteMessage}</p>
-            <p className="card-text-small">&#10077;{post.postMessage}&#10078;</p>
-            <p className="card-text-small">Quoted</p>
+            <p className="card__text-small">&#10077;{post.postMessage}&#10078;</p>
+            <p className="card__text-small">Quoted</p>
           </div>
         )}
         {post.type === 'repost' && (
           <div>
             <p>&#10077;{post.postMessage}&#10078;</p>
-            <p className="card-text-small">Reposted</p>
+            <p className="card__text-small">Reposted</p>
           </div>
         )}
       </div>
-      <div className="card-buttons">
+      <div className="card__buttons">
         {postsCounter >= MAX_NUMBER_OF_POSTS ? (
           <p>You already have 5 posts, repost or quote a new one tomorrow!</p>
         ) : (
@@ -61,7 +61,7 @@ const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, posts
         )}
       </div>
       {isQuoteOpen && (
-        <div className="card-quote">
+        <div className="card__quote">
           <TextArea onPostClick={() => onPostClick(post.id)} onTextChange={onTextChange} wasPosted={wasPosted} />
         </div>
       )}

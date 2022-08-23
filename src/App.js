@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Layout from '../src/routes/layout'
@@ -20,6 +20,12 @@ const App = () => {
   const handleTextChange = (textArea) => {
     setModalText(textArea)
   }
+
+  useEffect(() => {
+    if (state?.backgroundLocation !== null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [state])
 
   return (
     <>

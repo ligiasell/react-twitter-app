@@ -1,10 +1,10 @@
 .card {
   display: grid;
   grid-template-areas:
-    'card-user card-user'
-    'card-text card-text'
-    'card-buttons card-buttons'
-    'card-quote card-quote'
+    'card__user card__user'
+    'card__text card__text'
+    'card__buttons card__buttons'
+    'card__quote card__quote'
   ;
   grid-template-columns: min-content auto;
   box-sizing: border-box;
@@ -16,47 +16,47 @@
   margin: 0.8rem 0;
 }
 
-.card-profile-button {
+.card__profile {
   background-color: white;
   border: none;
 }
 
-.card-user {
+.card__user {
   display: flex;
   cursor: pointer;
 }
 
-.card-image {
+.card__image {
   width: 3rem;
   border-radius: 50%;
   border: solid 0.05rem lightgray;
 }
 
-.card-username {
+.card__username {
   margin: auto 0 auto 1rem;
   color: gray;
 }
 
-.card-username:hover {
+.card__username:hover {
   text-decoration: underline;
 }
 
-.card-text {
-  grid-area: card-text;
+.card__text {
+  grid-area: card__text;
 }
 
-.card-buttons {
-  grid-area: card-buttons;
+.card__buttons {
+  grid-area: card__buttons;
   display: flex;
   justify-content: flex-start;
   column-gap: 20px;
 }
 
-.card-quote {
-  grid-area: card-quote;
+.card__quote {
+  grid-area: card__quote;
 }
 
-.card-text-small {
+.card__text-small {
   color: gray;
   font-size: 0.9rem;
 }
