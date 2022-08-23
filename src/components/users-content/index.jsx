@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 
 import Card from '../card'
@@ -9,22 +10,18 @@ import { LOGGED_USER_ID } from '../../utils/constants'
 
 import './styles.css'
 
-const UsersContent = () => {
+const UsersContent = ({ modalText, wasPostClicked }) => {
   let path = useLocation().pathname
   const [posts, setPosts] = useState(POSTS)
   const [text, setText] = useState('')
   const [wasPosted, setWasPosted] = useState(false)
   const [postId, setPostId] = useState(undefined)
-  const [originalPost, setOriginalPost] = useState({})
   const [following, setFollowing] = useState([])
   const [postsCounter, setPostsCounter] = useState(undefined)
+  const [wasModalPostClicked, setWasModalPostClicked] = useState(false)
 
   const handleTextChange = (textArea) => {
     setText(textArea)
-  }
-
-  const onPostId = (id) => {
-    setPostId(id)
   }
 
   const handleCreatePost = () => {
@@ -42,41 +39,36 @@ const UsersContent = () => {
     setWasPosted(true)
   }
 
-  const handleCreateQuote = () => {
-    setPosts([
-      ...posts,
-      {
-        id: posts.length,
-        userId: LOGGED_USER_ID,
-        type: 'quote',
-        postMessage: originalPost[0].postMessage,
-        quoteMessage: text,
-        originalPostId: posts.length,
-      },
-    ])
-    setWasPosted(true)
-  }
-
-  const handleRepost = () => {
+  const handleRepost = (id) => {
+    setPostId(id)
     setPosts([
       ...posts,
       {
         id: posts.length,
         userId: LOGGED_USER_ID,
         type: 'repost',
-        postMessage: originalPost[0].postMessage,
+        postMessage: posts[id].postMessage,
         quoteMessage: '',
-        originalPostId: posts.length,
+        originalPostId: postId,
       },
     ])
-    setOriginalPost({})
   }
 
-  useEffect(() => {
-    if (postId !== undefined) {
-      setOriginalPost(posts.filter((post) => post.id === postId))
-    }
-  }, [posts, postId])
+  const handleCreateQuote = (id) => {
+    setPostId(id)
+    setPosts([
+      ...posts,
+      {
+        id: posts.length,
+        userId: LOGGED_USER_ID,
+        type: 'quote',
+        postMessage: posts[id].postMessage,
+        quoteMessage: text,
+        originalPostId: postId,
+      },
+    ])
+    setWasPosted(true)
+  }
 
   useEffect(() => {
     const loggedUser = USERS.find((user) => user.id === LOGGED_USER_ID)
@@ -86,6 +78,23 @@ const UsersContent = () => {
   useEffect(() => {
     setPostsCounter(posts.filter((post) => post.userId === LOGGED_USER_ID).length)
   }, [posts])
+
+  useEffect(() => {
+    if (modalText !== '') {
+      setText(modalText)
+    }
+  }, [modalText])
+
+  useEffect(() => {
+    setWasModalPostClicked(wasPostClicked)
+  }, [wasPostClicked])
+
+  useEffect(() => {
+    if (wasModalPostClicked) {
+      handleCreatePost()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wasModalPostClicked])
 
   return (
     <div className="users-content">
@@ -102,7 +111,6 @@ const UsersContent = () => {
                     onRepostClick={handleRepost}
                     onTextChange={handleTextChange}
                     wasPosted={wasPosted}
-                    onPostId={onPostId}
                     postsCounter={postsCounter}
                   />
                 </div>
@@ -118,7 +126,6 @@ const UsersContent = () => {
                   onRepostClick={handleRepost}
                   onTextChange={handleTextChange}
                   wasPosted={wasPosted}
-                  onPostId={onPostId}
                   postsCounter={postsCounter}
                 />
               </div>
@@ -131,6 +138,16 @@ const UsersContent = () => {
       </div>
     </div>
   )
+}
+
+UsersContent.propTypes = {
+  modalText: PropTypes.string,
+  wasPostClicked: PropTypes.bool,
+}
+
+UsersContent.defaultProps = {
+  modalText: '',
+  wasPostClicked: false,
 }
 
 export default UsersContent

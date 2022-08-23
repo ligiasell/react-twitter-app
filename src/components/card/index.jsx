@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
@@ -9,7 +9,7 @@ import { MAX_NUMBER_OF_POSTS } from '../../utils/constants'
 
 import './styles.css'
 
-const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPostId, postsCounter }) => {
+const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, postsCounter }) => {
   let location = useLocation()
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
 
@@ -17,9 +17,9 @@ const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPos
     setIsQuoteOpen((prevState) => !prevState)
   }
 
-  useEffect(() => {
-    onPostId(post.id)
-  }, [onPostId, post.id])
+  const handleRepost = useCallback(() => {
+    onRepostClick(post.id)
+  }, [onRepostClick, post.id])
 
   return (
     <section className="card">
@@ -55,15 +55,14 @@ const Card = ({ post, onPostClick, onRepostClick, onTextChange, wasPosted, onPos
           <p>You already have 5 posts, repost or quote a new one tomorrow!</p>
         ) : (
           <>
-            <Button onClick={onRepostClick}>Repost</Button>
+            <Button onClick={handleRepost}>Repost</Button>
             <Button onClick={handleQuote}>Quote</Button>
           </>
         )}
       </div>
-
       {isQuoteOpen && (
         <div className="card-quote">
-          <TextArea onPostClick={onPostClick} onTextChange={onTextChange} wasPosted={wasPosted} />
+          <TextArea onPostClick={() => onPostClick(post.id)} onTextChange={onTextChange} wasPosted={wasPosted} />
         </div>
       )}
     </section>
@@ -76,7 +75,6 @@ Card.propTypes = {
   onRepostClick: PropTypes.func,
   onTextChange: PropTypes.func,
   wasPosted: PropTypes.bool,
-  onPostId: PropTypes.func,
   postsCounter: PropTypes.number,
 }
 
@@ -86,7 +84,6 @@ Card.defaultProps = {
   onRepostClick: () => {},
   onTextChange: () => {},
   wasPosted: false,
-  onPostId: () => {},
   postsCounter: 0,
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -10,17 +10,16 @@ import { LOGGED_USER_ID, MODAL_OVERLAY_STYLE, MODAL_BACKGROUND_STYLE } from '../
 
 import './styles.css'
 
-const Modal = ({ onPostClick }) => {
+const Modal = ({ onPostClick, onTextChange, wasPostClicked }) => {
   let navigate = useNavigate()
   let userId = parseInt(useParams().id)
   const [isFollowing, setIsFollowing] = useState(undefined)
   const [selectedUser, setSelectedUser] = useState({})
   const [loggedUserPostsCounter, setLoggedUserPostsCounter] = useState(0)
 
-  const handleCloseModal = (event) => {
-    event.stopPropagation()
+  const handleCloseModal = useCallback(() => {
     navigate(-1)
-  }
+  }, [navigate])
 
   const handleIsFollowing = () => {
     const isLoggedUserFollowing = selectedUser.followers.includes(LOGGED_USER_ID)
@@ -54,6 +53,13 @@ const Modal = ({ onPostClick }) => {
     setLoggedUserPostsCounter(POSTS.filter((post) => post.userId === userId).length)
   }, [userId])
 
+  useEffect(() => {
+    if (wasPostClicked) {
+      handleCloseModal()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wasPostClicked])
+
   return (
     <div style={MODAL_OVERLAY_STYLE}>
       <div style={MODAL_BACKGROUND_STYLE}>
@@ -81,7 +87,7 @@ const Modal = ({ onPostClick }) => {
             <Button onClick={handleIsFollowing}>{`${isFollowing ? 'UNFOLLOW' : 'FOLLOW'}`}</Button>
           </div>
         )}
-        <TextArea onPostClick={onPostClick} />
+        <TextArea onPostClick={onPostClick} onTextChange={onTextChange} />
       </div>
     </div>
   )
@@ -89,10 +95,14 @@ const Modal = ({ onPostClick }) => {
 
 Modal.propTypes = {
   onPostClick: PropTypes.func,
+  onTextChange: PropTypes.func,
+  wasPostClicked: PropTypes.bool,
 }
 
 Modal.defaultProps = {
   onPostClick: () => {},
+  onTextChange: () => {},
+  wasPostClicked: false,
 }
 
 export default Modal
