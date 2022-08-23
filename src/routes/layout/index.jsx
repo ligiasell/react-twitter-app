@@ -27,11 +27,12 @@ const Layout = () => {
 
   return (
     <div className="layout">
-      <img src={logoColor} alt="Posterr logo" className="layout__logo" />
-      <h1 className="layout__title">Posterr</h1>
-      <SwitchButton checked={isChecked} onChange={onSwitchButtonChange} label={isChecked ? POSTS_VIEW_TYPE.FOLLOWING : POSTS_VIEW_TYPE.ALL} />
-      <Profile user={loggedUser} />
-      <hr />
+      <header className="layout__header">
+        <img src={logoColor} alt="Posterr logo" className="layout__logo" />
+        <h1 className="layout__title">Posterr</h1>
+        <SwitchButton checked={isChecked} onChange={onSwitchButtonChange} label={isChecked ? POSTS_VIEW_TYPE.FOLLOWING : POSTS_VIEW_TYPE.ALL} />
+        <Profile user={loggedUser} />
+      </header>
       <Outlet />
     </div>
   )

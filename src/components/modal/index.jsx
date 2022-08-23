@@ -44,7 +44,7 @@ const Modal = ({ onPostClick, onTextChange, wasPostClicked }) => {
   }, [userId])
 
   useEffect(() => {
-    if (selectedUser.followers) {
+    if (selectedUser?.followers) {
       setIsFollowing(selectedUser.followers.includes(LOGGED_USER_ID))
     }
   }, [selectedUser.followers])

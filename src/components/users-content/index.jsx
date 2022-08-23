@@ -99,9 +99,9 @@ const UsersContent = ({ modalText, wasPostClicked }) => {
   return (
     <div className="users-content">
       <div>
-        {posts.map((post) => {
+        {posts?.map((post) => {
           if (path === '/following') {
-            if (following.includes(post.userId)) {
+            if (following?.includes(post.userId)) {
               return (
                 <div key={post.id}>
                   <Card
